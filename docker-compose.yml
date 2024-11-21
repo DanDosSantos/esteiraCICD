@@ -1,0 +1,15 @@
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask_test_app
+    command: ["python", "-m", "unittest", "discover", "-s", "tests"]
+    volumes:
+      - ".:/app"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
